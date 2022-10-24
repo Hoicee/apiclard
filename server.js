@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 // requisição do content-type = application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/productsImg", express.static("app/public/upload/productsImg/"));
+
 // rota incial
 app.get("/", (req, res) => {
 	res.json({ message: "Seja bem vindo ao projeto!" });
