@@ -228,12 +228,14 @@ exports.productAlter = (req, res) => {
 		var alt_id 			= req.body.alt_id;
 		var alt_nome_prod 	= req.body.alt_nome_prod;
 		var alt_descricao	= req.body.alt_descricao;
+		var alt_categoria	= req.body.alt_categoria;
 		var alt_quantidade	= req.body.alt_quantidade;
 		var alt_valor		= req.body.alt_valor;
 
 		var sql = 	`UPDATE produto
 					SET nome_produto = '${alt_nome_prod}',
-					descricao = '${alt_descricao}', 
+					descricao = '${alt_descricao}',
+					categoria = '${alt_categoria}',
 					estoque = ${alt_quantidade}, 
 					valor = ${alt_valor}
 					WHERE id = ${alt_id}; `;
