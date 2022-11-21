@@ -28,6 +28,7 @@ module.exports		= function(app) {
 	,	controller.addressAdd
 	);
 	app.get("/api/address/list", [ authJwt.verifyToken ] , controller.addressList);
+	app.get("/api/address/get/:id_endereco", controller.addressGet);
 	app.post("/api/address/delete", controller.addressDelete);
 
 };

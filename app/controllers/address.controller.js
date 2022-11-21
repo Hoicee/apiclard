@@ -11,7 +11,7 @@ exports.addressList = (req, res) => {
 
 	var sql = `select * from "endereco" where id_usuario = '${id_usuario}' and status = 'ativo'`;
 
-	var resposta	= cnx.query(sql,
+	var resposta = cnx.query(sql,
 	{
 		type: cnx.QueryTypes.SELECT
 	}).then(async rows => {
@@ -20,6 +20,23 @@ exports.addressList = (req, res) => {
 		res.status(500).send({ messsage: err.message });
 	});
 };
+
+exports.addressGet = (req, res) => {
+
+	var id_endereco = req.params.id_endereco;
+
+	var sql = `select * from "endereco" where id = ${id_endereco}`;
+
+	var resposta = cnx.query(sql,
+		{
+			type: cnx.QueryTypes.SELECT
+		}).then(async rows => {
+			res.status(200).send( rows );
+		}).catch(err => {
+			res.status(500).send({ messsage: err.message });
+	});
+
+}
 
 exports.addressAdd = (req, res) => {
 
@@ -49,8 +66,7 @@ exports.addressDelete = (req, res) => {
     where: {
         id_endereco: idendex
     }
-
-  }).then(venda => {
+  	}).then(venda => {
 
       if(venda){
         var sql = `UPDATE endereco
